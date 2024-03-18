@@ -116,6 +116,7 @@
             this.tbOms.Name = "tbOms";
             this.tbOms.Size = new System.Drawing.Size(150, 20);
             this.tbOms.TabIndex = 20;
+            this.tbOms.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbOms_KeyPress);
             // 
             // tbPhoneNumber
             // 
@@ -123,6 +124,7 @@
             this.tbPhoneNumber.Name = "tbPhoneNumber";
             this.tbPhoneNumber.Size = new System.Drawing.Size(150, 20);
             this.tbPhoneNumber.TabIndex = 19;
+            this.tbPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPhoneNumber_KeyPress);
             // 
             // tbPatronymic
             // 
@@ -146,6 +148,7 @@
             this.button1.TabIndex = 16;
             this.button1.Text = "Подтвердить";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tbName
             // 

@@ -28,77 +28,120 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnAddPatient = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.BtnDeletePatient = new System.Windows.Forms.Button();
+            this.BtnEditPatient = new System.Windows.Forms.Button();
+            this.lbCurrentPatient = new System.Windows.Forms.Label();
+            this.tbCurrentPatient = new System.Windows.Forms.TextBox();
+            this.BtnAddExam = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // BtnAddPatient
             // 
-            this.button1.Location = new System.Drawing.Point(24, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 25);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Добавить пациента";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BtnAddPatient.Location = new System.Drawing.Point(24, 41);
+            this.BtnAddPatient.Name = "BtnAddPatient";
+            this.BtnAddPatient.Size = new System.Drawing.Size(150, 25);
+            this.BtnAddPatient.TabIndex = 0;
+            this.BtnAddPatient.Text = "Добавить пациента";
+            this.BtnAddPatient.UseVisualStyleBackColor = true;
+            this.BtnAddPatient.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(24, 72);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1000, 500);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(1076, 100);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             // 
-            // button2
+            // BtnDeletePatient
             // 
-            this.button2.Location = new System.Drawing.Point(189, 41);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 25);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Удалить пациента";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BtnDeletePatient.Location = new System.Drawing.Point(189, 41);
+            this.BtnDeletePatient.Name = "BtnDeletePatient";
+            this.BtnDeletePatient.Size = new System.Drawing.Size(150, 25);
+            this.BtnDeletePatient.TabIndex = 2;
+            this.BtnDeletePatient.Text = "Удалить пациента";
+            this.BtnDeletePatient.UseVisualStyleBackColor = true;
+            this.BtnDeletePatient.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // BtnEditPatient
             // 
-            this.button3.Location = new System.Drawing.Point(354, 41);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(150, 25);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Редактировать";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.BtnEditPatient.Location = new System.Drawing.Point(354, 41);
+            this.BtnEditPatient.Name = "BtnEditPatient";
+            this.BtnEditPatient.Size = new System.Drawing.Size(150, 25);
+            this.BtnEditPatient.TabIndex = 3;
+            this.BtnEditPatient.Text = "Редактировать данные ";
+            this.BtnEditPatient.UseVisualStyleBackColor = true;
+            this.BtnEditPatient.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // lbCurrentPatient
+            // 
+            this.lbCurrentPatient.AutoSize = true;
+            this.lbCurrentPatient.Location = new System.Drawing.Point(747, 49);
+            this.lbCurrentPatient.Name = "lbCurrentPatient";
+            this.lbCurrentPatient.Size = new System.Drawing.Size(99, 13);
+            this.lbCurrentPatient.TabIndex = 4;
+            this.lbCurrentPatient.Text = "Текущий пациент:";
+            // 
+            // tbCurrentPatient
+            // 
+            this.tbCurrentPatient.Location = new System.Drawing.Point(852, 46);
+            this.tbCurrentPatient.Name = "tbCurrentPatient";
+            this.tbCurrentPatient.Size = new System.Drawing.Size(248, 20);
+            this.tbCurrentPatient.TabIndex = 5;
+            // 
+            // BtnAddExam
+            // 
+            this.BtnAddExam.Location = new System.Drawing.Point(520, 41);
+            this.BtnAddExam.Name = "BtnAddExam";
+            this.BtnAddExam.Size = new System.Drawing.Size(150, 25);
+            this.BtnAddExam.TabIndex = 6;
+            this.BtnAddExam.Text = "Добавить обследование";
+            this.BtnAddExam.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 561);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.BtnAddExam);
+            this.Controls.Add(this.tbCurrentPatient);
+            this.Controls.Add(this.lbCurrentPatient);
+            this.Controls.Add(this.BtnEditPatient);
+            this.Controls.Add(this.BtnDeletePatient);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnAddPatient);
             this.Name = "Form1";
             this.Text = "МИС для записи беременных";
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnAddPatient;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button BtnDeletePatient;
+        private System.Windows.Forms.Button BtnEditPatient;
+        private System.Windows.Forms.Label lbCurrentPatient;
+        private System.Windows.Forms.TextBox tbCurrentPatient;
+        private System.Windows.Forms.Button BtnAddExam;
     }
 }
 

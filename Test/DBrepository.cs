@@ -96,6 +96,22 @@ namespace Repository
             }
             else return;
         }
+        public void updatePatient(Patient patient, string id)
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+                {
+                    string commandText1 = $"UPDATE Patients SET Имя = '{patient.FirstName}'," +
+                    $" Фамилия = '{patient.LastName}'," +
+                    $" Отчество = '{patient.Patronymic}'," +
+                    $" Телефон = '{patient.PhoneNumber}'," +
+                    $" Дата_рождения = '{patient.DateOfBirth}'," +
+                    $" Полис_ОМС = '{patient.OmsPolicyNumber}' WHERE ID = {int.Parse(id)} ";
+                    SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
+                    Connect.Open();
+                    Command1.ExecuteNonQuery();
+                }
+                Globals.id = "";
+        }
     }
     public class Patient
     {
@@ -115,5 +131,15 @@ namespace Repository
             PhoneNumber = phoneNumber;
             OmsPolicyNumber = omsPolicyNumber;
         }
+    }
+
+    public class LabAnalyzes
+    {
+
+    }
+
+    public class PhysioSignals
+    {
+
     }
 }

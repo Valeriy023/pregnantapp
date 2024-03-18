@@ -52,7 +52,12 @@ namespace Test
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             Globals.id = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            Console.WriteLine(Globals.id); ;
+            string CurrentName = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            string CurrentLastname = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            string CurrentPatronymic = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+            tbCurrentPatient.Text = $"{CurrentLastname} {CurrentName} {CurrentPatronymic}";
+            Console.WriteLine(Globals.id); 
         }
 
         private void button2_Click(object sender, EventArgs e)

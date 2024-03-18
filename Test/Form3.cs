@@ -33,5 +33,53 @@ namespace Test
                 dtp.Value = Convert.ToDateTime(temp.DateOfBirth,CultureInfo.CurrentCulture);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(tbName.Text) & !String.IsNullOrEmpty(tbLastName.Text) & !String.IsNullOrEmpty(tbPhoneNumber.Text) & !String.IsNullOrEmpty(tbOms.Text) & !String.IsNullOrEmpty(dtp.Value.ToString("d")))
+            {
+                Patient patient = new Patient(tbName.Text, tbLastName.Text, tbPatronymic.Text, dtp.Value.ToString("d"), tbPhoneNumber.Text, tbOms.Text);
+                Globals.Repos.updatePatient(patient,Globals.id);
+                // Очистить поля ввода и вернуться на главную форму
+                tbName.Text = "";
+                tbLastName.Text = "";
+                tbPatronymic.Text = "";
+                tbPhoneNumber.Text = "";
+                tbOms.Text = "";
+                dtp.MaxDate = DateTime.Now.Date;
+                dtp.Value = DateTime.Now.Date;
+                label7.Visible = false;
+                this.Close();
+            }
+            else label7.Visible = true;
+        }
+
+        private void tbOms_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Ввод только цифр, пробела и backspace
+            char number = e.KeyChar;
+            if (e.KeyChar <= 47 || e.KeyChar >= 58)
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == 32 || e.KeyChar == 8)
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void tbPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Ввод только цифр, +,  пробела и backspace
+            char number = e.KeyChar;
+            if (e.KeyChar <= 47 || e.KeyChar >= 58)
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == 32 || e.KeyChar == 8 || e.KeyChar == 43)
+            {
+                e.Handled = false;
+            }
+        }
     }
 }
