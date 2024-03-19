@@ -59,6 +59,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(150, 20);
             this.tbName.TabIndex = 1;
+            this.tbName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbName_KeyPress);
             // 
             // button1
             // 
@@ -76,6 +77,7 @@
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(150, 20);
             this.tbLastName.TabIndex = 3;
+            this.tbLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbLastName_KeyPress);
             // 
             // tbPatronymic
             // 
@@ -83,6 +85,7 @@
             this.tbPatronymic.Name = "tbPatronymic";
             this.tbPatronymic.Size = new System.Drawing.Size(150, 20);
             this.tbPatronymic.TabIndex = 4;
+            this.tbPatronymic.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPatronymic_KeyPress);
             // 
             // tbPhoneNumber
             // 

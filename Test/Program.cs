@@ -25,6 +25,7 @@ namespace Test
     {
         public static DBrepository Repos = new DBrepository();
         public static string id = "";
+        public static string examId = "";
         public static Form2 PatientAddForm = new Form2();
         public static Form3 PatientEditForm = new Form3();
         public static Form4 ExamCreateForm = new Form4();

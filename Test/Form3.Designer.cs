@@ -132,6 +132,7 @@
             this.tbPatronymic.Name = "tbPatronymic";
             this.tbPatronymic.Size = new System.Drawing.Size(150, 20);
             this.tbPatronymic.TabIndex = 18;
+            this.tbPatronymic.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPatronymic_KeyPress);
             // 
             // tbLastName
             // 
@@ -139,6 +140,7 @@
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(150, 20);
             this.tbLastName.TabIndex = 17;
+            this.tbLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbLastName_KeyPress);
             // 
             // button1
             // 
@@ -156,6 +158,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(150, 20);
             this.tbName.TabIndex = 15;
+            this.tbName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbName_KeyPress);
             // 
             // label1
             // 

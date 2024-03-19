@@ -57,7 +57,7 @@ namespace Test
         private void tbOms_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Ввод только цифр, пробела и backspace
-            char number = e.KeyChar;
+            
             if (e.KeyChar <= 47 || e.KeyChar >= 58)
             {
                 e.Handled = true;
@@ -71,7 +71,7 @@ namespace Test
         private void tbPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Ввод только цифр, +,  пробела и backspace
-            char number = e.KeyChar;
+            
             if (e.KeyChar <= 47 || e.KeyChar >= 58)
             {
                 e.Handled = true;
@@ -79,6 +79,45 @@ namespace Test
             if (e.KeyChar == 32 || e.KeyChar == 8 || e.KeyChar == 43)
             {
                 e.Handled = false;
+            }
+        }
+
+        private void tbLastName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar < 'А' || e.KeyChar > 'я')
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == 8 || e.KeyChar == 32)
+            {
+                e.Handled = false;
+
+            }
+        }
+
+        private void tbName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar < 'А' || e.KeyChar > 'я')
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == 8 || e.KeyChar == 32)
+            {
+                e.Handled = false;
+
+            }
+        }
+
+        private void tbPatronymic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar < 'А' || e.KeyChar > 'я')
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == 8 || e.KeyChar == 32)
+            {
+                e.Handled = false;
+
             }
         }
     }

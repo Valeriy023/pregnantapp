@@ -7,6 +7,7 @@ using static System.Net.Mime.MediaTypeNames;
 using Test;
 using System.Runtime.Remoting.Contexts;
 using System.Data;
+using System.Collections.Generic;
 
 namespace Repository
 {
@@ -22,8 +23,9 @@ namespace Repository
             using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
             {
                 string commandText1 = "CREATE TABLE IF NOT EXISTS Patients (ID INTEGER NOT NULL, Имя TEXT NOT NULL,Фамилия   TEXT NOT NULL,Отчество  TEXT,Телефон  TEXT NOT NULL,Дата_рождения TEXT NOT NULL,Полис_ОМС TEXT NOT NULL,PRIMARY KEY(ID AUTOINCREMENT))";
-                string commandText2 = "CREATE TABLE LabAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, PRO_в_моче REAL NOT NULL, KET_в_моче REAL NOT NULL, GLU_в_крови REAL NOT NULL, HGB_в_крови REAL NOT NULL, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
-                string commandText3 = "CREATE TABLE InstAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, ЧСС_плода TEXT, Активность_матки TEXT, Температура INTEGER, АД INTEGER, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
+                string commandText2 = "CREATE TABLE LabAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, PRO_в_моче TEXT NOT NULL, KET_в_моче TEXT NOT NULL, GLU_в_крови TEXT NOT NULL, HGB_в_крови TEXT NOT NULL, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
+                string commandText3 = "CREATE TABLE InstAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, КТГ TEXT, Температура TEXT, АД TEXT, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
+                //string commandText3 = "CREATE TABLE InstAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, ЧСС_плода TEXT, Активность_матки TEXT, Температура INTEGER, АД INTEGER, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
                 SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
                 SQLiteCommand Command2 = new SQLiteCommand(commandText2, Connect);
                 SQLiteCommand Command3 = new SQLiteCommand(commandText3, Connect);
@@ -112,6 +114,134 @@ namespace Repository
                 }
                 Globals.id = "";
         }
+     // Работа с лабораторными анализами
+        public void addLabAnalyzes(LabAnalyzes labAnalyzes)
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+            {
+                string commandText1 = $"INSERT INTO LabAnalysis (ID_пациента, PRO_в_моче, KET_в_моче, GLU_в_крови, HGB_в_крови) VALUES" +
+                    $" ('{int.Parse(labAnalyzes.id)}'," +
+                    $"'{labAnalyzes.Pro}'," +
+                    $"'{labAnalyzes.Ket}'," +
+                    $"'{labAnalyzes.Glu}'," +
+                    $"'{labAnalyzes.Hgb}')";
+                SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
+                Connect.Open();
+                Command1.ExecuteNonQuery();
+            }
+        }
+
+        public DataSet readLabAnalyzes()
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+            {
+                string commandText = "SELECT * FROM LabAnalysis";
+                using (SQLiteDataAdapter Adapter = new SQLiteDataAdapter(commandText, Connect))
+                {
+                    DataSet ds = new DataSet();
+                    Adapter.Fill(ds);
+                    return ds;
+                }
+            }
+        }
+        public DataSet readDataWithExamId(string id, string tablename)
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+            {
+                string commandText = $"SELECT * FROM '{tablename}' WHERE ID_пациента = {int.Parse(id)}";              
+                using (SQLiteDataAdapter Adapter = new SQLiteDataAdapter(commandText, Connect))
+                {
+                    DataSet ds = new DataSet();
+                    Adapter.Fill(ds);
+                    return ds;
+                }
+            }
+        }
+
+        public void deleteLabAnalyzes(string id)
+        {
+            if (!String.IsNullOrEmpty(id))
+            {
+                using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+                {
+                    string commandText1 = $"DELETE FROM LabAnalysis WHERE ID_пациента = {int.Parse(id)}";
+                    SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
+                    Connect.Open();
+                    Command1.ExecuteNonQuery();
+                }
+                
+            }
+            else return;
+        }
+        ////////////////////////////////////////////////
+        ///
+        // Работа с инструментальными анализами
+
+        public void addInstAnalyzes(InstAnalyzes instAnalyzes)
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+            {
+                string commandText1 = $"INSERT INTO InstAnalysis (ID_пациента, КТГ, Температура, АД ) VALUES" +
+                    $" ('{int.Parse(instAnalyzes.id)}'," +
+                    $"'{instAnalyzes.Ktg}'," +
+                    $"'{instAnalyzes.Temperature}'," +
+                    $"'{instAnalyzes.ArPressure}')";
+                SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
+                Connect.Open();
+                Command1.ExecuteNonQuery();
+            }
+        }
+
+        public DataSet readInstAnalyzes()
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+            {
+                string commandText = "SELECT * FROM InstAnalysis";
+                using (SQLiteDataAdapter Adapter = new SQLiteDataAdapter(commandText, Connect))
+                {
+                    DataSet ds = new DataSet();
+                    Adapter.Fill(ds);
+                    return ds;
+                }
+            }
+        }
+        public void deleteInstAnalyzes(string id)
+        {
+            if (!String.IsNullOrEmpty(id))
+            {
+                using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+                {
+                    string commandText1 = $"DELETE FROM InstAnalysis WHERE ID_пациента = {int.Parse(id)}";
+                    SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
+                    Connect.Open();
+                    Command1.ExecuteNonQuery();
+                }
+                
+            }
+            else return;
+        }
+
+        ////////////////////////////////////////////////
+        public void deleteAnalysisWithId(string id)
+        {
+            if (!String.IsNullOrEmpty(id))
+            {
+                using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+                {
+                    string commandText1 = $"DELETE FROM InstAnalysis WHERE ID_обследования = {int.Parse(id)}";
+                    string commandText2 = $"DELETE FROM LabAnalysis WHERE ID_обследования = {int.Parse(id)}";
+                    SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
+                    SQLiteCommand Command2 = new SQLiteCommand(commandText2, Connect);
+                    Connect.Open();
+                    Command1.ExecuteNonQuery();
+                    Command2.ExecuteNonQuery();
+                }
+
+            }
+            else return;
+        }
+
+
     }
     public class Patient
     {
@@ -135,11 +265,35 @@ namespace Repository
 
     public class LabAnalyzes
     {
+        public string id { get; set; }
+        public string Pro {  get; set; }
+        public string Ket { get; set; }
+        public string Glu { get; set; }
+        public string Hgb { get; set; }
 
+        public LabAnalyzes(string id, string pro, string ket, string glu, string hgb)
+        {
+            this.id = id;
+            Pro = pro;
+            Ket = ket;
+            Glu = glu;
+            Hgb = hgb;
+        }
     }
 
-    public class PhysioSignals
+    public class InstAnalyzes
     {
+        public string id { get; set; }
+        public string Ktg {  get; set; }
+        public string Temperature { get; set; }
+        public string ArPressure { get; set; }
 
+        public InstAnalyzes (string id, string ktg, string temperature, string arPressure)
+        {
+            this.id = id;
+            Ktg = ktg;
+            Temperature = temperature;
+            ArPressure = arPressure;
+        }
     }
 }
