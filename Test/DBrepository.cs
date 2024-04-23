@@ -23,16 +23,21 @@ namespace Repository
             using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
             {
                 string commandText1 = "CREATE TABLE IF NOT EXISTS Patients (ID INTEGER NOT NULL, Имя TEXT NOT NULL,Фамилия   TEXT NOT NULL,Отчество  TEXT,Телефон  TEXT NOT NULL,Дата_рождения TEXT NOT NULL,Полис_ОМС TEXT NOT NULL,PRIMARY KEY(ID AUTOINCREMENT))";
-                string commandText2 = "CREATE TABLE LabAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, PRO_в_моче TEXT NOT NULL, KET_в_моче TEXT NOT NULL, GLU_в_крови TEXT NOT NULL, HGB_в_крови TEXT NOT NULL, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
-                string commandText3 = "CREATE TABLE InstAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, КТГ TEXT, Температура TEXT, АД TEXT, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
+                string commandText2 = "CREATE TABLE LabAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, Ферритин TEXT NOT NULL, Сывороточное_железо TEXT NOT NULL,  HGB_в_крови TEXT NOT NULL, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
+                string commandText3 = "CREATE TABLE InstAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, КТГ TEXT, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
+                string commandText4 = "CREATE TABLE Settings (ID INTEGER NOT NULL PRIMARY KEY CHECK (ID = 1),Ферритин_норм TEXT, Сывороточное_железо_норм TEXT,HGB_в_крови_норм TEXT )";
                 //string commandText3 = "CREATE TABLE InstAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, ЧСС_плода TEXT, Активность_матки TEXT, Температура INTEGER, АД INTEGER, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
                 SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
                 SQLiteCommand Command2 = new SQLiteCommand(commandText2, Connect);
                 SQLiteCommand Command3 = new SQLiteCommand(commandText3, Connect);
+                SQLiteCommand Command4 = new SQLiteCommand(commandText4, Connect);
+               
                 Connect.Open();
                 Command1.ExecuteNonQuery();
                 Command2.ExecuteNonQuery();
                 Command3.ExecuteNonQuery();
+                Command4.ExecuteNonQuery();
+                
             }
         }
         public void addPatient(Patient patient)
@@ -119,11 +124,10 @@ namespace Repository
         {
             using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
             {
-                string commandText1 = $"INSERT INTO LabAnalysis (ID_пациента, PRO_в_моче, KET_в_моче, GLU_в_крови, HGB_в_крови) VALUES" +
+                string commandText1 = $"INSERT INTO LabAnalysis (ID_пациента, Ферритин, Сывороточное_железо, HGB_в_крови) VALUES" +
                     $" ('{int.Parse(labAnalyzes.id)}'," +
-                    $"'{labAnalyzes.Pro}'," +
-                    $"'{labAnalyzes.Ket}'," +
-                    $"'{labAnalyzes.Glu}'," +
+                    $"'{labAnalyzes.Ferr}'," +
+                    $"'{labAnalyzes.SeIron}'," +
                     $"'{labAnalyzes.Hgb}')";
                 SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
                 Connect.Open();
@@ -144,11 +148,24 @@ namespace Repository
                 }
             }
         }
-        public DataSet readDataWithExamId(string id, string tablename)
+        public DataSet readDataWithPatientId(string id, string tablename)
         {
             using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
             {
                 string commandText = $"SELECT * FROM '{tablename}' WHERE ID_пациента = {int.Parse(id)}";              
+                using (SQLiteDataAdapter Adapter = new SQLiteDataAdapter(commandText, Connect))
+                {
+                    DataSet ds = new DataSet();
+                    Adapter.Fill(ds);
+                    return ds;
+                }
+            }
+        }
+        public DataSet readDataWithExamId(string id,string examId, string tablename)
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+            {
+                string commandText = $"SELECT * FROM '{tablename}' WHERE ID_обследования = {int.Parse(id)} AND ID_обследования = {int.Parse(examId)}";
                 using (SQLiteDataAdapter Adapter = new SQLiteDataAdapter(commandText, Connect))
                 {
                     DataSet ds = new DataSet();
@@ -181,11 +198,9 @@ namespace Repository
         {
             using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
             {
-                string commandText1 = $"INSERT INTO InstAnalysis (ID_пациента, КТГ, Температура, АД ) VALUES" +
+                string commandText1 = $"INSERT INTO InstAnalysis (ID_пациента, КТГ ) VALUES" +
                     $" ('{int.Parse(instAnalyzes.id)}'," +
-                    $"'{instAnalyzes.Ktg}'," +
-                    $"'{instAnalyzes.Temperature}'," +
-                    $"'{instAnalyzes.ArPressure}')";
+                    $"'{instAnalyzes.Ktg}')";
                 SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
                 Connect.Open();
                 Command1.ExecuteNonQuery();
@@ -240,7 +255,68 @@ namespace Repository
             }
             else return;
         }
+        // Работа с настройками
 
+        public void addSettings (string FerrMin,  string FerrMax, string SeIronMin, string SeIronMax, string HGBMin, string HGBMax)
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+            {
+                string ferr = $"{FerrMin},{FerrMax}";
+                string seiron = $"{SeIronMin},{SeIronMax}";
+                string hgb = $"{HGBMin},{HGBMax}";
+                string commandText1 = $"INSERT INTO Settings (Ферритин_норм, Сывороточное_железо_норм,HGB_в_крови_норм ) VALUES ('{ferr}','{seiron}','{hgb}')";
+                SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
+                Connect.Open();
+                Command1.ExecuteNonQuery();
+            }
+
+        }
+
+
+        public (string[], string[], string[]) checkSettings()
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+            {
+                string commandText = $"SELECT * FROM Settings WHERE ID = 1";
+                using (SQLiteDataAdapter Adapter = new SQLiteDataAdapter(commandText, Connect))
+                {
+                    DataSet ds = new DataSet();
+                    Adapter.Fill(ds);
+                    if (ds.Tables[0].Rows.Count>0)
+                    {
+                        string[] Ferr = ds.Tables[0].Rows[0].ItemArray[1].ToString().Split(',');
+                        string[] SeIron = ds.Tables[0].Rows[0].ItemArray[2].ToString().Split(',');
+                        string[] HGB = ds.Tables[0].Rows[0].ItemArray[3].ToString().Split(',');
+                        return (Ferr, SeIron, HGB);
+                    }
+                    else
+                    {
+                        string[] Ferr = { "", "" };
+                        string[] SeIron = { "", "" };
+                        string[] HGB = { "", "" };
+                        return (Ferr, SeIron, HGB);
+                    }
+                    
+
+
+
+                }
+            }
+        }
+        public void updateSettings(string FerrMin, string FerrMax, string SeIronMin, string SeIronMax, string HGBMin, string HGBMax)
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
+            {
+                string ferr = $"{FerrMin},{FerrMax}";
+                string seiron = $"{SeIronMin},{SeIronMax}";
+                string hgb = $"{HGBMin},{HGBMax}";
+                string commandText1 = $"UPDATE Settings SET Ферритин_норм = '{ferr}', Сывороточное_железо_норм = '{seiron}',HGB_в_крови_норм = '{hgb}' WHERE ID = 1";
+                SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
+                Connect.Open();
+                Command1.ExecuteNonQuery();
+            }
+        }
+        /////////////////////////
 
     }
     public class Patient
@@ -266,17 +342,16 @@ namespace Repository
     public class LabAnalyzes
     {
         public string id { get; set; }
-        public string Pro {  get; set; }
-        public string Ket { get; set; }
-        public string Glu { get; set; }
+        public string Ferr {  get; set; }
+        public string SeIron { get; set; }
+        
         public string Hgb { get; set; }
 
-        public LabAnalyzes(string id, string pro, string ket, string glu, string hgb)
+        public LabAnalyzes(string id, string fer, string seiron,  string hgb)
         {
             this.id = id;
-            Pro = pro;
-            Ket = ket;
-            Glu = glu;
+            Ferr = fer;
+            SeIron = seiron;
             Hgb = hgb;
         }
     }
@@ -285,15 +360,13 @@ namespace Repository
     {
         public string id { get; set; }
         public string Ktg {  get; set; }
-        public string Temperature { get; set; }
-        public string ArPressure { get; set; }
 
-        public InstAnalyzes (string id, string ktg, string temperature, string arPressure)
+
+        public InstAnalyzes(string id, string ktg)
         {
             this.id = id;
             Ktg = ktg;
-            Temperature = temperature;
-            ArPressure = arPressure;
         }
+
     }
 }

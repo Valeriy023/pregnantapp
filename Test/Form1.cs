@@ -59,10 +59,10 @@ namespace Test
 
             tbCurrentPatient.Text = $"{CurrentLastname} {CurrentName} {CurrentPatronymic}";
 
-            DataSet labDs = Globals.Repos.readDataWithExamId(Globals.id,"LabAnalysis");
+            DataSet labDs = Globals.Repos.readDataWithPatientId(Globals.id,"LabAnalysis");
             dataGridView2.DataSource = labDs.Tables[0].DefaultView;
 
-            DataSet instDs = Globals.Repos.readDataWithExamId(Globals.id, "InstAnalysis");
+            DataSet instDs = Globals.Repos.readDataWithPatientId(Globals.id, "InstAnalysis");
             dataGridView3.DataSource = instDs.Tables[0].DefaultView;
         }
 
@@ -127,6 +127,20 @@ namespace Test
         private void tbnDeleteAnalyzes_Click(object sender, EventArgs e)
         {
             deleteAndReadAnalyzes();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (Globals.examId != "" && Globals.id!="")
+            {
+                Globals.DiagnosisForm.ShowDialog();
+            }
+            
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            Globals.SettingsForm.ShowDialog();
         }
     }
 }

@@ -36,20 +36,17 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(tbPRO.Text) & !String.IsNullOrEmpty(tbKET.Text) & !String.IsNullOrEmpty(tbGLU.Text) & !String.IsNullOrEmpty(tbHGB.Text)& !String.IsNullOrEmpty(tbTemperature.Text) & !String.IsNullOrEmpty(tbArPressure.Text) & !String.IsNullOrEmpty(tbCurrentFile.Text))
+            if (!String.IsNullOrEmpty(tbFerr.Text) & !String.IsNullOrEmpty(tbSeIron.Text) & !String.IsNullOrEmpty(tbHGB.Text) & !String.IsNullOrEmpty(tbCurrentFile.Text))
             {
-                LabAnalyzes labAnalyzes = new LabAnalyzes(Globals.id, tbPRO.Text, tbKET.Text, tbGLU.Text, tbHGB.Text);
+                LabAnalyzes labAnalyzes = new LabAnalyzes(Globals.id, tbFerr.Text, tbSeIron.Text,  tbHGB.Text);
                 Globals.Repos.addLabAnalyzes(labAnalyzes);
            
-                InstAnalyzes instAnalyzes = new InstAnalyzes(Globals.id,tbCurrentFile.Text, tbTemperature.Text, tbArPressure.Text);
+                InstAnalyzes instAnalyzes = new InstAnalyzes(Globals.id,tbCurrentFile.Text);
                 Globals.Repos.addInstAnalyzes(instAnalyzes);
 
-                tbPRO.Text = "";
-                tbKET.Text = "";
-                tbGLU.Text = "";
+                tbFerr.Text = "";
+                tbSeIron.Text = "";              
                 tbHGB.Text = "";
-                tbTemperature.Text = "";
-                tbArPressure.Text = "";
                 tbCurrentFile.Text = "";
                 label12.Visible = false;
                 this.Close();

@@ -38,6 +38,8 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.btnDeleteAnalyzes = new System.Windows.Forms.Button();
+            this.btnCalculateAnalyzes = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -64,10 +66,10 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 72);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 72);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1118, 100);
+            this.dataGridView1.Size = new System.Drawing.Size(1130, 100);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             // 
@@ -163,11 +165,33 @@
             this.btnDeleteAnalyzes.UseVisualStyleBackColor = true;
             this.btnDeleteAnalyzes.Click += new System.EventHandler(this.tbnDeleteAnalyzes_Click);
             // 
+            // btnCalculateAnalyzes
+            // 
+            this.btnCalculateAnalyzes.Location = new System.Drawing.Point(260, 213);
+            this.btnCalculateAnalyzes.Name = "btnCalculateAnalyzes";
+            this.btnCalculateAnalyzes.Size = new System.Drawing.Size(163, 25);
+            this.btnCalculateAnalyzes.TabIndex = 10;
+            this.btnCalculateAnalyzes.Text = "Анализ обследования";
+            this.btnCalculateAnalyzes.UseVisualStyleBackColor = true;
+            this.btnCalculateAnalyzes.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Location = new System.Drawing.Point(1008, 524);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(164, 25);
+            this.btnSettings.TabIndex = 11;
+            this.btnSettings.Text = "Настройки";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 561);
+            this.Controls.Add(this.btnSettings);
+            this.Controls.Add(this.btnCalculateAnalyzes);
             this.Controls.Add(this.btnDeleteAnalyzes);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
@@ -202,6 +226,8 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Button btnDeleteAnalyzes;
+        private System.Windows.Forms.Button btnCalculateAnalyzes;
+        private System.Windows.Forms.Button btnSettings;
     }
 }
 
