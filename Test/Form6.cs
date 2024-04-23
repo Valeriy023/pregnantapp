@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,15 +41,15 @@ namespace Test
 
             if (!Values.Item1.Contains("") && !Values.Item2.Contains("") && !Values.Item3.Contains(""))
             {
-                if ((double.Parse(Ferr) < double.Parse(Values.Item1[0]) || (double.Parse(Ferr) > double.Parse(Values.Item1[1]))))
+                if ((double.Parse(Ferr, NumberStyles.Any, CultureInfo.InvariantCulture) < double.Parse(Values.Item1[0], NumberStyles.Any, CultureInfo.InvariantCulture) || (double.Parse(Ferr, NumberStyles.Any, CultureInfo.InvariantCulture) > double.Parse(Values.Item1[1], NumberStyles.Any, CultureInfo.InvariantCulture))))
                 {lbFerrConclusion2.Visible = true;}
                 else {lbFerrConclusion1.Visible = true; }
 
-                if ((double.Parse(SeIron) < double.Parse(Values.Item2[0]) || (double.Parse(SeIron) > double.Parse(Values.Item2[1]))))
+                if ((double.Parse(SeIron, NumberStyles.Any, CultureInfo.InvariantCulture) < double.Parse(Values.Item2[0], NumberStyles.Any, CultureInfo.InvariantCulture) || (double.Parse(SeIron, NumberStyles.Any, CultureInfo.InvariantCulture) > double.Parse(Values.Item2[1], NumberStyles.Any, CultureInfo.InvariantCulture))))
                 { lbSeIronConclusion2.Visible = true; }
                 else { lbSeIronConclusion1.Visible = true; }
 
-                if ((double.Parse(HGB) < double.Parse(Values.Item3[0]) || (double.Parse(HGB) > double.Parse(Values.Item3[1]))))
+                if ((double.Parse(HGB, NumberStyles.Any, CultureInfo.InvariantCulture) < double.Parse(Values.Item3[0], NumberStyles.Any, CultureInfo.InvariantCulture) || (double.Parse(HGB, NumberStyles.Any, CultureInfo.InvariantCulture) > double.Parse(Values.Item3[1], NumberStyles.Any, CultureInfo.InvariantCulture))))
                 { lbHgbConclusion2.Visible = true; }
                 else { lbHgbConclusion1.Visible = true; }
             }

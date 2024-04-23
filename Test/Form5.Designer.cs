@@ -39,12 +39,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnConfirm = new System.Windows.Forms.Button();
-            this.tbFerrMax = new System.Windows.Forms.TextBox();
-            this.tbSeIronMax = new System.Windows.Forms.TextBox();
-            this.tbHGBMax = new System.Windows.Forms.TextBox();
-            this.tbHGBMin = new System.Windows.Forms.TextBox();
             this.tbSeIronMin = new System.Windows.Forms.TextBox();
+            this.tbHGBMin = new System.Windows.Forms.TextBox();
+            this.tbHGBMax = new System.Windows.Forms.TextBox();
+            this.tbSeIronMax = new System.Windows.Forms.TextBox();
+            this.tbFerrMax = new System.Windows.Forms.TextBox();
+            this.btnConfirm = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,7 +144,6 @@
             this.panel1.Controls.Add(this.tbHGBMax);
             this.panel1.Controls.Add(this.tbSeIronMax);
             this.panel1.Controls.Add(this.tbFerrMax);
-            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
@@ -154,10 +153,51 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lbFerr);
             this.panel1.Controls.Add(this.tbFerrMin);
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Location = new System.Drawing.Point(34, 16);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(356, 297);
             this.panel1.TabIndex = 15;
+            // 
+            // tbSeIronMin
+            // 
+            this.tbSeIronMin.Location = new System.Drawing.Point(47, 146);
+            this.tbSeIronMin.Name = "tbSeIronMin";
+            this.tbSeIronMin.Size = new System.Drawing.Size(100, 20);
+            this.tbSeIronMin.TabIndex = 19;
+            this.tbSeIronMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSeIronMin_KeyPress);
+            // 
+            // tbHGBMin
+            // 
+            this.tbHGBMin.Location = new System.Drawing.Point(47, 236);
+            this.tbHGBMin.Name = "tbHGBMin";
+            this.tbHGBMin.Size = new System.Drawing.Size(100, 20);
+            this.tbHGBMin.TabIndex = 18;
+            this.tbHGBMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbHGBMin_KeyPress);
+            // 
+            // tbHGBMax
+            // 
+            this.tbHGBMax.Location = new System.Drawing.Point(220, 236);
+            this.tbHGBMax.Name = "tbHGBMax";
+            this.tbHGBMax.Size = new System.Drawing.Size(100, 20);
+            this.tbHGBMax.TabIndex = 17;
+            this.tbHGBMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbHGBMax_KeyPress);
+            // 
+            // tbSeIronMax
+            // 
+            this.tbSeIronMax.Location = new System.Drawing.Point(220, 146);
+            this.tbSeIronMax.Name = "tbSeIronMax";
+            this.tbSeIronMax.Size = new System.Drawing.Size(100, 20);
+            this.tbSeIronMax.TabIndex = 16;
+            this.tbSeIronMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSeIronMax_KeyPress);
+            // 
+            // tbFerrMax
+            // 
+            this.tbFerrMax.Location = new System.Drawing.Point(220, 45);
+            this.tbFerrMax.Name = "tbFerrMax";
+            this.tbFerrMax.Size = new System.Drawing.Size(100, 20);
+            this.tbFerrMax.TabIndex = 15;
+            this.tbFerrMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFerrMax_KeyPress);
             // 
             // btnConfirm
             // 
@@ -168,46 +208,6 @@
             this.btnConfirm.Text = "Подтвердить";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
-            // tbFerrMax
-            // 
-            this.tbFerrMax.Location = new System.Drawing.Point(220, 45);
-            this.tbFerrMax.Name = "tbFerrMax";
-            this.tbFerrMax.Size = new System.Drawing.Size(100, 20);
-            this.tbFerrMax.TabIndex = 15;
-            this.tbFerrMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFerrMax_KeyPress);
-            // 
-            // tbSeIronMax
-            // 
-            this.tbSeIronMax.Location = new System.Drawing.Point(220, 146);
-            this.tbSeIronMax.Name = "tbSeIronMax";
-            this.tbSeIronMax.Size = new System.Drawing.Size(100, 20);
-            this.tbSeIronMax.TabIndex = 16;
-            this.tbSeIronMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSeIronMax_KeyPress);
-            // 
-            // tbHGBMax
-            // 
-            this.tbHGBMax.Location = new System.Drawing.Point(220, 236);
-            this.tbHGBMax.Name = "tbHGBMax";
-            this.tbHGBMax.Size = new System.Drawing.Size(100, 20);
-            this.tbHGBMax.TabIndex = 17;
-            this.tbHGBMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbHGBMax_KeyPress);
-            // 
-            // tbHGBMin
-            // 
-            this.tbHGBMin.Location = new System.Drawing.Point(47, 236);
-            this.tbHGBMin.Name = "tbHGBMin";
-            this.tbHGBMin.Size = new System.Drawing.Size(100, 20);
-            this.tbHGBMin.TabIndex = 18;
-            this.tbHGBMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbHGBMin_KeyPress);
-            // 
-            // tbSeIronMin
-            // 
-            this.tbSeIronMin.Location = new System.Drawing.Point(47, 146);
-            this.tbSeIronMin.Name = "tbSeIronMin";
-            this.tbSeIronMin.Size = new System.Drawing.Size(100, 20);
-            this.tbSeIronMin.TabIndex = 19;
-            this.tbSeIronMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSeIronMin_KeyPress);
             // 
             // Form5
             // 
