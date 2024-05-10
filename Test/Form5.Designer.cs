@@ -45,12 +45,13 @@
             this.tbSeIronMax = new System.Windows.Forms.TextBox();
             this.tbFerrMax = new System.Windows.Forms.TextBox();
             this.btnConfirm = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbFerrMin
             // 
-            this.tbFerrMin.Location = new System.Drawing.Point(47, 45);
+            this.tbFerrMin.Location = new System.Drawing.Point(47, 140);
             this.tbFerrMin.Name = "tbFerrMin";
             this.tbFerrMin.Size = new System.Drawing.Size(100, 20);
             this.tbFerrMin.TabIndex = 0;
@@ -59,25 +60,25 @@
             // lbFerr
             // 
             this.lbFerr.AutoSize = true;
-            this.lbFerr.Location = new System.Drawing.Point(121, 11);
+            this.lbFerr.Location = new System.Drawing.Point(149, 106);
             this.lbFerr.Name = "lbFerr";
-            this.lbFerr.Size = new System.Drawing.Size(95, 13);
+            this.lbFerr.Size = new System.Drawing.Size(62, 13);
             this.lbFerr.TabIndex = 6;
-            this.lbFerr.Text = "Ферритин, мкг/л";
+            this.lbFerr.Text = "B12, пг/мл";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(104, 116);
+            this.label1.Location = new System.Drawing.Point(149, 198);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 13);
+            this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Сывороточное железо, мкмоль/л";
+            this.label1.Text = "B9, нмоль/л";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(121, 204);
+            this.label2.Location = new System.Drawing.Point(134, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
             this.label2.TabIndex = 8;
@@ -86,7 +87,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 243);
+            this.label3.Location = new System.Drawing.Point(20, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 9;
@@ -95,7 +96,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(188, 243);
+            this.label4.Location = new System.Drawing.Point(188, 60);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 10;
@@ -104,7 +105,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 153);
+            this.label5.Location = new System.Drawing.Point(20, 236);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 13);
             this.label5.TabIndex = 11;
@@ -113,7 +114,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(188, 153);
+            this.label6.Location = new System.Drawing.Point(188, 236);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 12;
@@ -122,7 +123,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(188, 52);
+            this.label7.Location = new System.Drawing.Point(188, 147);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 13);
             this.label7.TabIndex = 13;
@@ -131,7 +132,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 52);
+            this.label8.Location = new System.Drawing.Point(20, 147);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 13);
             this.label8.TabIndex = 14;
@@ -161,7 +162,7 @@
             // 
             // tbSeIronMin
             // 
-            this.tbSeIronMin.Location = new System.Drawing.Point(47, 146);
+            this.tbSeIronMin.Location = new System.Drawing.Point(47, 229);
             this.tbSeIronMin.Name = "tbSeIronMin";
             this.tbSeIronMin.Size = new System.Drawing.Size(100, 20);
             this.tbSeIronMin.TabIndex = 19;
@@ -169,7 +170,7 @@
             // 
             // tbHGBMin
             // 
-            this.tbHGBMin.Location = new System.Drawing.Point(47, 236);
+            this.tbHGBMin.Location = new System.Drawing.Point(47, 53);
             this.tbHGBMin.Name = "tbHGBMin";
             this.tbHGBMin.Size = new System.Drawing.Size(100, 20);
             this.tbHGBMin.TabIndex = 18;
@@ -177,7 +178,7 @@
             // 
             // tbHGBMax
             // 
-            this.tbHGBMax.Location = new System.Drawing.Point(220, 236);
+            this.tbHGBMax.Location = new System.Drawing.Point(220, 53);
             this.tbHGBMax.Name = "tbHGBMax";
             this.tbHGBMax.Size = new System.Drawing.Size(100, 20);
             this.tbHGBMax.TabIndex = 17;
@@ -185,7 +186,7 @@
             // 
             // tbSeIronMax
             // 
-            this.tbSeIronMax.Location = new System.Drawing.Point(220, 146);
+            this.tbSeIronMax.Location = new System.Drawing.Point(220, 229);
             this.tbSeIronMax.Name = "tbSeIronMax";
             this.tbSeIronMax.Size = new System.Drawing.Size(100, 20);
             this.tbSeIronMax.TabIndex = 16;
@@ -193,7 +194,7 @@
             // 
             // tbFerrMax
             // 
-            this.tbFerrMax.Location = new System.Drawing.Point(220, 45);
+            this.tbFerrMax.Location = new System.Drawing.Point(220, 140);
             this.tbFerrMax.Name = "tbFerrMax";
             this.tbFerrMax.Size = new System.Drawing.Size(100, 20);
             this.tbFerrMax.TabIndex = 15;
@@ -209,11 +210,22 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label9.Location = new System.Drawing.Point(110, 336);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(201, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Рекомендуется задать все настройки";
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(422, 399);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.panel1);
             this.Name = "Form5";
@@ -222,6 +234,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -244,5 +257,6 @@
         private System.Windows.Forms.TextBox tbHGBMax;
         private System.Windows.Forms.TextBox tbSeIronMax;
         private System.Windows.Forms.TextBox tbFerrMax;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -62,7 +62,7 @@
             // 
             // tbFerr
             // 
-            this.tbFerr.Location = new System.Drawing.Point(19, 51);
+            this.tbFerr.Location = new System.Drawing.Point(32, 99);
             this.tbFerr.Name = "tbFerr";
             this.tbFerr.Size = new System.Drawing.Size(100, 20);
             this.tbFerr.TabIndex = 1;
@@ -81,24 +81,24 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 35);
+            this.label3.Location = new System.Drawing.Point(29, 83);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 13);
+            this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Ферритин, мкг/л";
+            this.label3.Text = "B12, пг/мл";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 83);
+            this.label4.Location = new System.Drawing.Point(29, 131);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(178, 13);
+            this.label4.Size = new System.Drawing.Size(69, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Сывороточное железо, мкмоль/л";
+            this.label4.Text = "B9, нмоль/л";
             // 
             // tbSeIron
             // 
-            this.tbSeIron.Location = new System.Drawing.Point(19, 99);
+            this.tbSeIron.Location = new System.Drawing.Point(32, 147);
             this.tbSeIron.Name = "tbSeIron";
             this.tbSeIron.Size = new System.Drawing.Size(100, 20);
             this.tbSeIron.TabIndex = 4;
@@ -106,6 +106,7 @@
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.tbHGB);
             this.panel1.Controls.Add(this.tbSeIron);
             this.panel1.Controls.Add(this.tbFerr);
@@ -120,7 +121,7 @@
             // 
             // tbHGB
             // 
-            this.tbHGB.Location = new System.Drawing.Point(19, 150);
+            this.tbHGB.Location = new System.Drawing.Point(32, 52);
             this.tbHGB.Name = "tbHGB";
             this.tbHGB.Size = new System.Drawing.Size(100, 20);
             this.tbHGB.TabIndex = 4;
@@ -129,7 +130,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 134);
+            this.label7.Location = new System.Drawing.Point(29, 36);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(122, 13);
             this.label7.TabIndex = 5;
@@ -138,7 +139,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(29, 5);
+            this.label8.Location = new System.Drawing.Point(39, 5);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 13);
             this.label8.TabIndex = 6;
@@ -188,6 +189,7 @@
             // 
             // panel3
             // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.tbCurrentFile);

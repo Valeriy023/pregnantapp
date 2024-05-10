@@ -20,11 +20,6 @@ namespace Test
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(tbName.Text) & !String.IsNullOrEmpty(tbLastName.Text) & !String.IsNullOrEmpty(tbPhoneNumber.Text) & !String.IsNullOrEmpty(tbOms.Text) & !String.IsNullOrEmpty(dtp.Value.ToString("d")))

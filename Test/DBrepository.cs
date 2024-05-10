@@ -23,9 +23,9 @@ namespace Repository
             using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
             {
                 string commandText1 = "CREATE TABLE IF NOT EXISTS Patients (ID INTEGER NOT NULL, Имя TEXT NOT NULL,Фамилия   TEXT NOT NULL,Отчество  TEXT,Телефон  TEXT NOT NULL,Дата_рождения TEXT NOT NULL,Полис_ОМС TEXT NOT NULL,PRIMARY KEY(ID AUTOINCREMENT))";
-                string commandText2 = "CREATE TABLE LabAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, Ферритин TEXT NOT NULL, Сывороточное_железо TEXT NOT NULL,  HGB_в_крови TEXT NOT NULL, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
+                string commandText2 = "CREATE TABLE LabAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, B12 TEXT NOT NULL, B9 TEXT NOT NULL,  Гемоглобин TEXT NOT NULL, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
                 string commandText3 = "CREATE TABLE InstAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, КТГ TEXT, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
-                string commandText4 = "CREATE TABLE Settings (ID INTEGER NOT NULL PRIMARY KEY CHECK (ID = 1),Ферритин_норм TEXT, Сывороточное_железо_норм TEXT,HGB_в_крови_норм TEXT )";
+                string commandText4 = "CREATE TABLE Settings (ID INTEGER NOT NULL PRIMARY KEY CHECK (ID = 1),B12_норм TEXT, B9_норм TEXT,Гемоглобин_норм TEXT )";
                 //string commandText3 = "CREATE TABLE InstAnalysis (ID_пациента INTEGER NOT NULL, ID_обследования INTEGER NOT NULL, ЧСС_плода TEXT, Активность_матки TEXT, Температура INTEGER, АД INTEGER, FOREIGN KEY(ID_пациента) REFERENCES Patients(ID), PRIMARY KEY(ID_обследования AUTOINCREMENT))";
                 SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
                 SQLiteCommand Command2 = new SQLiteCommand(commandText2, Connect);
@@ -124,10 +124,10 @@ namespace Repository
         {
             using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
             {
-                string commandText1 = $"INSERT INTO LabAnalysis (ID_пациента, Ферритин, Сывороточное_железо, HGB_в_крови) VALUES" +
+                string commandText1 = $"INSERT INTO LabAnalysis (ID_пациента, B12, B9, Гемоглобин) VALUES" +
                     $" ('{int.Parse(labAnalyzes.id)}'," +
-                    $"'{labAnalyzes.Ferr}'," +
-                    $"'{labAnalyzes.SeIron}'," +
+                    $"'{labAnalyzes.B12}'," +
+                    $"'{labAnalyzes.B9}'," +
                     $"'{labAnalyzes.Hgb}')";
                 SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
                 Connect.Open();
@@ -257,14 +257,14 @@ namespace Repository
         }
         // Работа с настройками
 
-        public void addSettings (string FerrMin,  string FerrMax, string SeIronMin, string SeIronMax, string HGBMin, string HGBMax)
+        public void addSettings (string B12Min,  string B12Max, string B9Min, string B9Max, string HGBMin, string HGBMax)
         {
             using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
             {
-                string ferr = $"{FerrMin},{FerrMax}";
-                string seiron = $"{SeIronMin},{SeIronMax}";
+                string b12 = $"{B12Min},{B12Max}";
+                string b9 = $"{B9Min},{B9Max}";
                 string hgb = $"{HGBMin},{HGBMax}";
-                string commandText1 = $"INSERT INTO Settings (Ферритин_норм, Сывороточное_железо_норм,HGB_в_крови_норм ) VALUES ('{ferr}','{seiron}','{hgb}')";
+                string commandText1 = $"INSERT INTO Settings (B12_норм, B9_норм, Гемоглобин_норм) VALUES ('{b12}','{b9}','{hgb}')";
                 SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
                 Connect.Open();
                 Command1.ExecuteNonQuery();
@@ -284,17 +284,17 @@ namespace Repository
                     Adapter.Fill(ds);
                     if (ds.Tables[0].Rows.Count>0)
                     {
-                        string[] Ferr = ds.Tables[0].Rows[0].ItemArray[1].ToString().Split(',');
-                        string[] SeIron = ds.Tables[0].Rows[0].ItemArray[2].ToString().Split(',');
+                        string[] B12 = ds.Tables[0].Rows[0].ItemArray[1].ToString().Split(',');
+                        string[] B9 = ds.Tables[0].Rows[0].ItemArray[2].ToString().Split(',');
                         string[] HGB = ds.Tables[0].Rows[0].ItemArray[3].ToString().Split(',');
-                        return (Ferr, SeIron, HGB);
+                        return (B12, B9, HGB);
                     }
                     else
                     {
-                        string[] Ferr = { "", "" };
-                        string[] SeIron = { "", "" };
+                        string[] B12 = { "", "" };
+                        string[] B9 = { "", "" };
                         string[] HGB = { "", "" };
-                        return (Ferr, SeIron, HGB);
+                        return (B12, B9, HGB);
                     }
                     
 
@@ -303,14 +303,14 @@ namespace Repository
                 }
             }
         }
-        public void updateSettings(string FerrMin, string FerrMax, string SeIronMin, string SeIronMax, string HGBMin, string HGBMax)
+        public void updateSettings(string B12Min, string B12Max, string B9Min, string B9Max, string HGBMin, string HGBMax)
         {
             using (SQLiteConnection Connect = new SQLiteConnection("Data Source=TestDB.db"))
             {
-                string ferr = $"{FerrMin},{FerrMax}";
-                string seiron = $"{SeIronMin},{SeIronMax}";
+                string b12 = $"{B12Min},{B12Max}";
+                string b9 = $"{B9Min},{B9Max}";
                 string hgb = $"{HGBMin},{HGBMax}";
-                string commandText1 = $"UPDATE Settings SET Ферритин_норм = '{ferr}', Сывороточное_железо_норм = '{seiron}',HGB_в_крови_норм = '{hgb}' WHERE ID = 1";
+                string commandText1 = $"UPDATE Settings SET B12_норм = '{b12}', B9_норм = '{b9}',Гемоглобин_норм = '{hgb}' WHERE ID = 1";
                 SQLiteCommand Command1 = new SQLiteCommand(commandText1, Connect);
                 Connect.Open();
                 Command1.ExecuteNonQuery();
@@ -342,16 +342,16 @@ namespace Repository
     public class LabAnalyzes
     {
         public string id { get; set; }
-        public string Ferr {  get; set; }
-        public string SeIron { get; set; }
+        public string B12 {  get; set; }
+        public string B9 { get; set; }
         
         public string Hgb { get; set; }
 
-        public LabAnalyzes(string id, string fer, string seiron,  string hgb)
+        public LabAnalyzes(string id, string b12, string b9,  string hgb)
         {
             this.id = id;
-            Ferr = fer;
-            SeIron = seiron;
+            B12 = b12;
+            B9 = b9;
             Hgb = hgb;
         }
     }
