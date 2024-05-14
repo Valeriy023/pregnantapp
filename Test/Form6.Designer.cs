@@ -60,7 +60,6 @@
             this.lbConRec = new System.Windows.Forms.Label();
             this.tbConRec = new System.Windows.Forms.TextBox();
             this.tbPatient = new System.Windows.Forms.TextBox();
-            this.lbExamDate = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lbChartWarning1 = new System.Windows.Forms.Label();
@@ -332,19 +331,10 @@
             // 
             // tbPatient
             // 
-            this.tbPatient.Location = new System.Drawing.Point(338, 43);
+            this.tbPatient.Location = new System.Drawing.Point(417, 43);
             this.tbPatient.Name = "tbPatient";
             this.tbPatient.Size = new System.Drawing.Size(239, 20);
             this.tbPatient.TabIndex = 10;
-            // 
-            // lbExamDate
-            // 
-            this.lbExamDate.AutoSize = true;
-            this.lbExamDate.Location = new System.Drawing.Point(583, 46);
-            this.lbExamDate.Name = "lbExamDate";
-            this.lbExamDate.Size = new System.Drawing.Size(111, 13);
-            this.lbExamDate.TabIndex = 11;
-            this.lbExamDate.Text = "Дата обследования:";
             // 
             // chart1
             // 
@@ -416,7 +406,6 @@
             this.Controls.Add(this.lbChartWarning1);
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
-            this.Controls.Add(this.lbExamDate);
             this.Controls.Add(this.tbPatient);
             this.Controls.Add(this.tbConRec);
             this.Controls.Add(this.lbConRec);
@@ -469,7 +458,6 @@
         private System.Windows.Forms.Label lbConRec;
         private System.Windows.Forms.TextBox tbConRec;
         private System.Windows.Forms.TextBox tbPatient;
-        private System.Windows.Forms.Label lbExamDate;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.Label lbChartWarning1;

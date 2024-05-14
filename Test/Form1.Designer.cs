@@ -177,7 +177,7 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(1008, 524);
+            this.btnSettings.Location = new System.Drawing.Point(978, 524);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(164, 25);
             this.btnSettings.TabIndex = 11;
@@ -189,7 +189,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 561);
+            this.ClientSize = new System.Drawing.Size(1154, 561);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnCalculateAnalyzes);
             this.Controls.Add(this.btnDeleteAnalyzes);
