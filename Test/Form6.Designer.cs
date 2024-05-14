@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,9 +59,17 @@
             this.lbConRecHead = new System.Windows.Forms.Label();
             this.lbConRec = new System.Windows.Forms.Label();
             this.tbConRec = new System.Windows.Forms.TextBox();
+            this.tbPatient = new System.Windows.Forms.TextBox();
+            this.lbExamDate = new System.Windows.Forms.Label();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lbChartWarning1 = new System.Windows.Forms.Label();
+            this.lbChartWarning2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -316,11 +330,94 @@
             this.tbConRec.Size = new System.Drawing.Size(763, 41);
             this.tbConRec.TabIndex = 9;
             // 
+            // tbPatient
+            // 
+            this.tbPatient.Location = new System.Drawing.Point(338, 43);
+            this.tbPatient.Name = "tbPatient";
+            this.tbPatient.Size = new System.Drawing.Size(239, 20);
+            this.tbPatient.TabIndex = 10;
+            // 
+            // lbExamDate
+            // 
+            this.lbExamDate.AutoSize = true;
+            this.lbExamDate.Location = new System.Drawing.Point(583, 46);
+            this.lbExamDate.Name = "lbExamDate";
+            this.lbExamDate.Size = new System.Drawing.Size(111, 13);
+            this.lbExamDate.TabIndex = 11;
+            this.lbExamDate.Text = "Дата обследования:";
+            // 
+            // chart1
+            // 
+            chartArea1.AxisY.Maximum = 200D;
+            chartArea1.AxisY.Minimum = 50D;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Location = new System.Drawing.Point(289, 69);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(497, 178);
+            this.chart1.TabIndex = 12;
+            this.chart1.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            title1.Name = "Title1";
+            title1.Text = "ЧСС плода, уд/мин";
+            this.chart1.Titles.Add(title1);
+            // 
+            // chart2
+            // 
+            chartArea2.AxisX.Title = "Время, с";
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            this.chart2.Location = new System.Drawing.Point(289, 253);
+            this.chart2.Name = "chart2";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
+            this.chart2.Size = new System.Drawing.Size(497, 178);
+            this.chart2.TabIndex = 13;
+            this.chart2.Text = "chart2";
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            title2.Name = "Title1";
+            title2.Text = "Тонус матки, %";
+            this.chart2.Titles.Add(title2);
+            // 
+            // lbChartWarning1
+            // 
+            this.lbChartWarning1.AutoSize = true;
+            this.lbChartWarning1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbChartWarning1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lbChartWarning1.Location = new System.Drawing.Point(404, 145);
+            this.lbChartWarning1.Name = "lbChartWarning1";
+            this.lbChartWarning1.Size = new System.Drawing.Size(280, 20);
+            this.lbChartWarning1.TabIndex = 14;
+            this.lbChartWarning1.Text = "Проверьте указанный путь к файлу";
+            // 
+            // lbChartWarning2
+            // 
+            this.lbChartWarning2.AutoSize = true;
+            this.lbChartWarning2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbChartWarning2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lbChartWarning2.Location = new System.Drawing.Point(404, 329);
+            this.lbChartWarning2.Name = "lbChartWarning2";
+            this.lbChartWarning2.Size = new System.Drawing.Size(280, 20);
+            this.lbChartWarning2.TabIndex = 15;
+            this.lbChartWarning2.Text = "Проверьте указанный путь к файлу";
+            // 
             // Form6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 499);
+            this.Controls.Add(this.lbChartWarning2);
+            this.Controls.Add(this.lbChartWarning1);
+            this.Controls.Add(this.chart2);
+            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.lbExamDate);
+            this.Controls.Add(this.tbPatient);
             this.Controls.Add(this.tbConRec);
             this.Controls.Add(this.lbConRec);
             this.Controls.Add(this.lbConRecHead);
@@ -337,6 +434,8 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,5 +468,11 @@
         private System.Windows.Forms.Label lbConRecHead;
         private System.Windows.Forms.Label lbConRec;
         private System.Windows.Forms.TextBox tbConRec;
+        private System.Windows.Forms.TextBox tbPatient;
+        private System.Windows.Forms.Label lbExamDate;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.Label lbChartWarning1;
+        private System.Windows.Forms.Label lbChartWarning2;
     }
 }

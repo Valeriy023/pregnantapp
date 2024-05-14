@@ -5,10 +5,12 @@ using System.Data;
 using System.Data.SqlTypes;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Repository;
 
 namespace Test
 {
@@ -22,6 +24,8 @@ namespace Test
         private void Form6_Load(object sender, EventArgs e)
         {
             lbWarning.Visible = false;
+            lbChartWarning1.Visible = false;
+            lbChartWarning2.Visible = false;
             lbConRec.Visible = false;
             lbB12Conclusion1.Visible = false;
             lbB12Conclusion2.Visible = false;
@@ -30,13 +34,40 @@ namespace Test
             lbHgbConclusion1.Visible=false;
             lbHgbConclusion2.Visible=false;
             tbConRec.Text = "";
+            chart1.Series[0].Points.Clear();
+            chart2.Series[0].Points.Clear();
 
-            DataSet examDs = Globals.Repos.readDataWithExamId(Globals.examId,Globals.examId, "LabAnalysis");
+            Patient pat = Globals.Repos.getPatientWithId(Globals.id);
+            string patName = pat.FirstName;
+            string patLastname = pat.LastName;
+            string patPatronymic = pat.Patronymic;
+            tbPatient.Text = $"{patLastname} {patName} {patPatronymic}";
+
+            DataSet examInstDs = Globals.Repos.readDataWithExamId(Globals.examId, Globals.examId, "InstAnalysis");
+            string signalPath = examInstDs.Tables[0].Rows[0].ItemArray[2].ToString();
+            if (File.Exists(signalPath))
+            {
+                string[] signal = File.ReadAllLines(signalPath);
+                for (int i = 1; i < 600; i++)
+                {
+                    int point1 = int.Parse(signal[i][0].ToString() + signal[i][1].ToString() + signal[i][2].ToString());
+                    int point2 = int.Parse(signal[i][7].ToString() + signal[i][8].ToString());
+                    chart1.Series[0].Points.AddY(point1);
+                    chart2.Series[0].Points.AddY(point2);
+                }
+            }
+            else 
+            { 
+                lbChartWarning1.Visible = true;
+                lbChartWarning2.Visible = true;
+            }
+
+            DataSet examLabDs = Globals.Repos.readDataWithExamId(Globals.examId,Globals.examId, "LabAnalysis");
             (string[], string[], string[]) Values = Globals.Repos.checkSettings();
 
-            string B12 = examDs.Tables[0].Rows[0].ItemArray[2].ToString();
-            string B9 = examDs.Tables[0].Rows[0].ItemArray[3].ToString();
-            string HGB = examDs.Tables[0].Rows[0].ItemArray[4].ToString();
+            string B12 = examLabDs.Tables[0].Rows[0].ItemArray[2].ToString();
+            string B9 = examLabDs.Tables[0].Rows[0].ItemArray[3].ToString();
+            string HGB = examLabDs.Tables[0].Rows[0].ItemArray[4].ToString();
 
             lbB12Value.Text = $"{B12} пг/мл";
             lbB9Value.Text = $"{B9} нмоль/л";
